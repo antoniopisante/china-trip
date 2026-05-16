@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Italy Meets China: An AI Leadership Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1;
+  --bg-nav: rgba(248, 246, 241, 0.88);
+  --surface: #f1efe9;
+  --surface-2: #eae7e0;
+  --border: #ddd9d0;
+  --text: #1a1814;
+  --text-muted: #6b6560;
+  --accent: #1d4ed8;
+  --accent-soft: rgba(29, 78, 216, 0.07);
+  --gold: #b45309;
+  --gold-soft: rgba(180, 83, 9, 0.07);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  /* Subtle Chinese cloud pattern */
+  background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg opacity='0.028' fill='%23a08060'%3E%3Ccircle cx='40' cy='80' r='18'/%3E%3Ccircle cx='58' cy='74' r='14'/%3E%3Ccircle cx='72' cy='82' r='16'/%3E%3Ccircle cx='56' cy='88' r='12'/%3E%3Ccircle cx='150' cy='160' r='15'/%3E%3Ccircle cx='165' cy='155' r='12'/%3E%3Ccircle cx='176' cy='162' r='14'/%3E%3Ccircle cx='163' cy='168' r='10'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* ─── FLAG BANNER ─── */
+.flag-banner {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  cursor: default;
+}
+
+.flag-banner canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ─── TOP NAV ─── */
+.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transform: translateY(-100%);
+  transition: transform 0.35s ease;
+}
+
+.topnav.visible { transform: translateY(0); }
+
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.65rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-inner a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.35rem 0.9rem;
+  border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.nav-inner a:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* ─── HERO ─── */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem 6rem;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(29,78,216,0.25);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  font-weight: 300;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item { text-align: center; }
+
+.hero-meta-item .label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.hero-meta-item .value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* ─── SECTIONS ─── */
+section {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.section-text {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 750px;
+  font-weight: 300;
+}
+
+.divider {
+  max-width: 1100px;
+  margin: 0 auto;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ─── MISSION ─── */
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.mission-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mission-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.mission-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+.mission-card p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
+
+.mission-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; margin-bottom: 1.25rem;
+}
+.mission-icon.blue { background: var(--accent-soft); }
+.mission-icon.gold { background: var(--gold-soft); }
+
+/* ─── TRAVELERS ─── */
+.travelers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.traveler-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.traveler-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.traveler-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(29,78,216,0.3);
+  box-shadow: 0 16px 48px rgba(29,78,216,0.08), 0 4px 16px rgba(0,0,0,0.04);
+}
+
+.traveler-card:hover::before { left: 120%; }
+
+.traveler-avatar {
+  width: 80px; height: 80px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #6366f1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem;
+  color: #fff; overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+}
+
+.traveler-card:hover .traveler-avatar {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(29,78,216,0.2);
+}
+
+.traveler-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.avatar-initials { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+
+.traveler-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.2rem; }
+.traveler-card .role { font-size: 0.8rem; color: var(--accent); font-weight: 500; margin-bottom: 0.75rem; }
+.traveler-card .bio { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+
+.traveler-links { margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+.traveler-links a {
+  font-size: 0.75rem; font-weight: 500; color: var(--accent);
+  text-decoration: none; padding: 0.25rem 0.65rem;
+  border: 1px solid rgba(29,78,216,0.25); border-radius: 100px;
+  transition: all 0.25s;
+}
+
+.traveler-links a:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.traveler-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.3rem 0.8rem; border-radius: 100px; margin-top: 1rem;
+}
+
+.tag-entrepreneur { background: var(--accent-soft); color: var(--accent); }
+.tag-creator { background: var(--gold-soft); color: var(--gold); }
+.tag-researcher { background: rgba(16, 185, 129, 0.08); color: #047857; }
+.tag-tbc { background: rgba(107,114,128,0.1); color: var(--text-muted); }
+
+/* ─── ITINERARY ─── */
+.itinerary { margin-top: 3rem; }
+
+.itinerary-phase {
+  display: grid;
+  grid-template-columns: 140px 24px 1fr;
+  gap: 0 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.timeline-line {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.timeline-line::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: -3rem; width: 1px;
+  background: var(--border);
+}
+
+.timeline-dot {
+  position: relative; z-index: 1;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 2.5px solid var(--accent);
+  background: var(--bg);
+  margin-top: 6px; flex-shrink: 0;
+}
+
+.itinerary-phase:last-child .timeline-line::before { display: none; }
+
+.phase-marker { text-align: right; }
+.phase-marker .city { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.phase-marker .days { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+.phase-content {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.phase-content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.phase-content h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 1rem; }
+.phase-content ul { list-style: none; padding: 0; }
+
+.phase-content li {
+  padding: 0.5rem 0; padding-left: 1.5rem; position: relative;
+  color: var(--text-muted); font-size: 0.92rem; font-weight: 300;
+}
+
+.phase-content li::before {
+  content: '';
+  position: absolute; left: 0; top: 0.95rem;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ─── FACILITATORS ─── */
+.facilitators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.facilitator-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.facilitator-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.facilitator-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(180,83,9,0.35);
+  box-shadow: 0 12px 36px rgba(180,83,9,0.06), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+.facilitator-card:hover::before { left: 120%; }
+
+.facilitator-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+.facilitator-card .org { font-size: 0.82rem; color: var(--gold); font-weight: 500; margin-bottom: 0.75rem; }
+.facilitator-card .org a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(180,83,9,0.25); transition: border-color 0.2s; }
+.facilitator-card .org a:hover { border-color: var(--gold); }
+.facilitator-card .desc { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; line-height: 1.6; }
+
+/* ─── GOALS ─── */
+.goals-list { margin-top: 2.5rem; display: grid; gap: 1.25rem; }
+
+.goal-item {
+  display: flex; gap: 1.25rem; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.goal-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.goal-num {
+  flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: 700;
+}
+
+.goal-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.25rem; }
+.goal-item p { font-size: 0.88rem; color: var(--text-muted); font-weight: 300; }
+
+.note-box {
+  background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--accent); border-radius: 0 12px 12px 0;
+  padding: 2rem; margin-top: 3rem;
+}
+
+.note-box h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+.note-box p { font-size: 0.92rem; color: var(--text-muted); font-weight: 300; }
+
+
+
+footer {
+  text-align: center; padding: 4rem 2rem;
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+footer p { color: var(--text-muted); font-size: 0.85rem; font-weight: 300; }
+footer a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 768px) {
+  .flag-banner { height: 280px; }
+  .hero-meta { gap: 1.5rem; }
+  .itinerary-phase { grid-template-columns: 1fr; gap: 1rem; }
+  .timeline-line { display: none; }
+  .phase-marker { text-align: left; }
+  .travelers-grid { grid-template-columns: 1fr; }
+  .nav-inner { gap: 0.1rem; }
+  .nav-inner a { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ TOP NAV ═══════ -->
+<nav class="topnav" id="topnav">
+  <div class="nav-inner">
+    <a href="#why">Why This Trip</a>
+    <a href="#group">The Group</a>
+    <a href="#journey">The Journey</a>
+    <a href="#goals">Our Goals</a>
+    <a href="#facilitators">Facilitated By</a>
+  </div>
+</nav>
+
+<!-- ═══════ FLAG BANNER ═══════ -->
+<div class="flag-banner" id="flagBanner">
+  <canvas id="flagCanvas"></canvas>
+</div>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Summer 2026 &middot; Shenzhen &amp; Beijing</div>
+    <h1>Italy Meets China</h1>
+    <div class="hero-subtitle">An AI Leadership Journey</div>
+    <p class="hero-sub">A group of Italian AI entrepreneurs, researchers, and digital creators traveling to China to build lasting bridges between Europe's and Asia's most dynamic AI ecosystems.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><div class="label">Duration</div><div class="value">10 Days</div></div>
+      <div class="hero-meta-item"><div class="label">Cities</div><div class="value">Shenzhen &amp; Beijing</div></div>
+      <div class="hero-meta-item"><div class="label">Focus</div><div class="value">AI &amp; Deep Tech</div></div>
+      <div class="hero-meta-item"><div class="label">Group Size</div><div class="value">6 People</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ WHY ═══════ -->
+<section id="why">
+  <div class="section-label">Why This Trip</div>
+  <h2 class="section-title">Understanding both sides of the AI revolution</h2>
+  <p class="section-text">We are a group of Italian AI entrepreneurs who regularly travel to San Francisco to meet with leading AI labs, researchers, and founders. We have built strong relationships with the Silicon Valley ecosystem and now we want to do the same with China &mdash; the other superpower shaping the future of artificial intelligence.</p>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-icon blue">&#x1F310;</div>
+      <h3>Two Worlds, One Mission</h3>
+      <p>AI development is splitting into two distinct ecosystems: the US-led West and China. We believe understanding both is essential for any European leader who wants to build at the frontier.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon gold">&#x1F91D;</div>
+      <h3>Real Relationships</h3>
+      <p>This is not a conference or a tour. We visit labs, meet researchers, share meals, and build genuine connections with the people behind China's most ambitious AI projects.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon blue">&#x1F1EE;&#x1F1F9;</div>
+      <h3>An Italian Perspective</h3>
+      <p>Italy has a unique position in the global AI landscape &mdash; deep industrial expertise, world-class research talent, and a culture of creativity. We bring this perspective to every conversation.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ TRAVELERS ═══════ -->
+<section id="group">
+  <div class="section-label">The Group</div>
+  <h2 class="section-title">Who is traveling</h2>
+  <p class="section-text">Six people traveling together, each bringing a different lens to the Chinese AI ecosystem.</p>
+  <div class="travelers-grid">
+    <div class="traveler-card">
+      <div class="traveler-avatar">
+        <img src="photos/antonio-pisante.jpeg" alt="Antonio Pisante">
+      </div>
+      <h3>Antonio Pisante</h3>
+      <div class="role">Founder, Yellow Tech &middot; President, AIFIA</div>
+      <p class="bio">Founder and CEO of Yellow Tech, an AI consultancy that has guided 450+ Italian organizations through AI transformation, trained over 25,000 professionals, and deployed AI agents in production for enterprise clients. President of AIFIA (Associazione Italiana Formatori di Intelligenza Artificiale), a network of 190+ certified AI trainers &mdash; the largest in Italy. Visits San Francisco quarterly to meet with leading AI labs.</p>
+      <div class="traveler-links">
+        <a href="https://www.yellowtech.it" target="_blank">yellowtech.it</a>
+        <a href="https://www.linkedin.com/in/apisante" target="_blank">LinkedIn</a>
+      </div>
+      <span class="traveler-tag tag-entrepreneur">AI Agents &amp; Adoption</span>
+    </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar">
+        <img src="photos/alessandro-busso.jpeg" alt="Alessandro Busso">
+      </div>
+      <h3>Alessandro Busso</h3>
+      <div class="role">Co-Founder &amp; COO, Wibo</div>
+      <p class="bio">Co-founded Wibo at age 21. Today, Wibo is a fast-growing edtech scaleup that partners with 150+ corporates and multinationals &mdash; including Unicredit, Huawei, Cr&eacute;dit Agricole, and Amazon &mdash; to design how people and AI work together. 14,500+ professionals trained across Italy and abroad. Previously co-founded Officina Magazine at 15, a cultural journalism platform with 60 writers.</p>
+      <div class="traveler-links">
+        <a href="https://www.wibo.app/en" target="_blank">wibo.app</a>
+        <a href="https://www.linkedin.com/in/alessandro-busso" target="_blank">LinkedIn</a>
+      </div>
+      <span class="traveler-tag tag-entrepreneur">AI &amp; Education</span>
+    </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar">
+        <img src="photos/guglielmo-panzera.png" alt="Guglielmo Panzera">
+      </div>
+      <h3>Guglielmo Panzera</h3>
+      <div class="role">Founder, eVentures &middot; Co-Founder, Il Pagante</div>
+      <p class="bio">Serial entrepreneur operating at the intersection of technology and entertainment. Founded eVentures and co-created Il Pagante, which grew from a viral social media project into a full-fledged entertainment brand with millions of streams and sold-out live events across Italy. Brings a unique perspective on how AI and technology are reshaping creative industries, content production, and the music business.</p>
+      <div class="traveler-links">
+        <a href="https://eventures.it/" target="_blank">eventures.it</a>
+        <a href="https://www.linkedin.com/in/guglielmo-panzera-372432a6" target="_blank">LinkedIn</a>
+      </div>
+      <span class="traveler-tag tag-entrepreneur">Music &amp; Entertainment Tech</span>
+    </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"><span class="avatar-initials">?</span></div>
+      <h3>AI Entrepreneur</h3>
+      <div class="role">To Be Confirmed</div>
+      <p class="bio">An Italian AI entrepreneur with a track record in building and scaling technology companies, joining the group to explore collaboration opportunities in the Chinese ecosystem.</p>
+      <span class="traveler-tag tag-tbc">To Be Confirmed</span>
+    </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar" style="background: linear-gradient(135deg, #059669, #10b981);"><span class="avatar-initials">?</span></div>
+      <h3>AI Leading Researcher</h3>
+      <div class="role">To Be Confirmed</div>
+      <p class="bio">A leading Italian AI researcher with publications at top-tier conferences (NeurIPS, ICML), joining to bridge the academic communities and explore joint research initiatives between Italy and China.</p>
+      <span class="traveler-tag tag-researcher">To Be Confirmed</span>
+    </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar" style="background: linear-gradient(135deg, var(--gold), #d97706);"><span class="avatar-initials">?</span></div>
+      <h3>Digital Tech Creator</h3>
+      <div class="role">To Be Confirmed</div>
+      <p class="bio">A prominent Italian digital creator with a large following, joining to document the journey and bring China's AI ecosystem to a wider European audience.</p>
+      <span class="traveler-tag tag-tbc">To Be Confirmed</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ ITINERARY ═══════ -->
+<section id="journey">
+  <div class="section-label">The Journey</div>
+  <h2 class="section-title">10 days, two cities, one mission</h2>
+  <p class="section-text">A focused itinerary designed to maximize depth over breadth. Five days in Shenzhen to see the product innovation layer, five days in Beijing to meet the research frontier.</p>
+  <div class="itinerary">
+    <div class="itinerary-phase">
+      <div class="phase-marker"><div class="city">Shenzhen</div><div class="days">Days 1&ndash;5</div></div>
+      <div class="timeline-line"><div class="timeline-dot"></div></div>
+      <div class="phase-content">
+        <h3>The Product Layer &mdash; China's Hardware Capital</h3>
+        <ul>
+          <li>Huaqiangbei electronics market &mdash; the world's largest electronics bazaar</li>
+          <li>Visits to leading hardware and consumer AI companies</li>
+          <li>Factory tours and product innovation labs</li>
+          <li>CATL &mdash; the company making 65% of Earth's lithium-ion batteries</li>
+          <li>Experimental AI product showrooms and downstream application labs</li>
+          <li>Meetings with Shenzhen-based founders and investors</li>
+        </ul>
+      </div>
+    </div>
+    <div class="itinerary-phase">
+      <div class="phase-marker"><div class="city">Beijing</div><div class="days">Days 6&ndash;10</div></div>
+      <div class="timeline-line"><div class="timeline-dot"></div></div>
+      <div class="phase-content">
+        <h3>The Research Frontier &mdash; China's AI Brain</h3>
+        <ul>
+          <li>Visits to leading AI labs: Moonshot/KIMI, Zhipu AI, Baidu, 01.AI, and more</li>
+          <li>Meetings with researchers at Tsinghua University and PKU</li>
+          <li>Private dinners with lab researchers and industry leaders in Haidian district</li>
+          <li>Informal gathering in Beijing's hutong district &mdash; pancakes, cocktails, and conversation</li>
+          <li>Day trip to the Great Wall &mdash; a private wild section with a local historian</li>
+          <li>Meetings with StepFun (Beijing office) and Minimax representatives</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ GOALS ═══════ -->
+<section id="goals">
+  <div class="section-label">Our Goals</div>
+  <h2 class="section-title">What we want to learn</h2>
+  <div class="goals-list">
+    <div class="goal-item"><div class="goal-num">1</div><div><h4>Understand China's AI Stack</h4><p>From foundational models (DeepSeek, Zhipu, Moonshot) to product-layer innovation (Shenzhen hardware, consumer AI), we want to map the full ecosystem.</p></div></div>
+    <div class="goal-item"><div class="goal-num">2</div><div><h4>Build Genuine Relationships</h4><p>Real conversations over meals with researchers, engineers, and founders who are shaping China's AI future.</p></div></div>
+    <div class="goal-item"><div class="goal-num">3</div><div><h4>Compare US and China Approaches</h4><p>As frequent visitors to Silicon Valley, we have deep context on Western AI development. This trip completes the picture with the Chinese perspective.</p></div></div>
+    <div class="goal-item"><div class="goal-num">4</div><div><h4>Explore Collaboration Opportunities</h4><p>We are actively building AI products and training thousands of professionals in Europe. We are looking for ideas, partnerships, and inspiration from the Chinese ecosystem.</p></div></div>
+  </div>
+  <div class="note-box">
+    <h3>Important Note</h3>
+    <p>This is not a reporting trip. We are not journalists and we are not producing media content during the visit. A typical meeting for us is a brief mutual introduction followed by informal, open-ended conversation. We are here to listen, learn, and connect &mdash; not to broadcast.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════ FACILITATORS ═══════ -->
+<section id="facilitators">
+  <div class="section-label">Facilitated By</div>
+  <h2 class="section-title">Our guides into the Chinese ecosystem</h2>
+  <p class="section-text">This journey is made possible by experienced facilitators with deep roots in both the Chinese tech ecosystem and international business communities.</p>
+  <div class="facilitators-grid">
+    <div class="facilitator-card">
+      <h3>Caithrin Rintoul</h3>
+      <div class="org">Independent China-AI Advisor &middot; <a href="https://www.caithrin.com" target="_blank">caithrin.com</a></div>
+      <p class="desc">15 years in tech across Canada, US, Europe, and Asia. Travels to China 3 times a year and is deeply embedded in Beijing's AI research community. Organizes lab visits, researcher dinners, and introductions to China's leading AI labs. Head of Operations at ChinaTalk. Our primary facilitator for Beijing connections.</p>
+    </div>
+    <div class="facilitator-card">
+      <h3>Oryenta</h3>
+      <div class="org">Bridging Western Institutions with China's Innovation Ecosystem &middot; <a href="https://www.oryenta.com" target="_blank">oryenta.com</a></div>
+      <p class="desc">Decades of combined experience bridging Western institutions with China's innovation ecosystem. Oryenta offers Executive Immersions, Technology Sourcing, and Capital Advisory &mdash; with partners based in both Milan and Shenzhen. Our facilitators for the Shenzhen leg of the journey.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p style="font-size: 1.1rem; color: var(--text); font-weight: 500; margin-bottom: 0.5rem;">Italy Meets China: An AI Leadership Journey</p>
+  <p>Summer 2026 &middot; Shenzhen &amp; Beijing</p>
+  <p style="margin-top: 1rem;">For inquiries: <a href="mailto:antonio.pisante@yellowtech.it">antonio.pisante@yellowtech.it</a></p>
+</footer>
+
+<!-- ═══════ FLAG CANVAS SCRIPT ═══════ -->
+<script>
+(function() {
+  const canvas = document.getElementById('flagCanvas');
+  const banner = document.getElementById('flagBanner');
+  const ctx = canvas.getContext('2d');
+
+  let W, H, dpr;
+  let flags = [];
+  let needsFullRedraw = true;
+
+  // Pre-compute star polygon points (avoid recalculating every draw)
+  function starPoints(cx, cy, r, points) {
+    const pts = [];
+    for (let i = 0; i < points * 2; i++) {
+      const radius = i % 2 === 0 ? r : r * 0.38;
+      const angle = (i * Math.PI / points) - Math.PI / 2;
+      pts.push(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+    }
+    return pts;
+  }
+
+  function drawStarFromPts(pts) {
+    ctx.beginPath();
+    ctx.moveTo(pts[0], pts[1]);
+    for (let i = 2; i < pts.length; i += 2) ctx.lineTo(pts[i], pts[i + 1]);
+    ctx.closePath();
+    ctx.fill();
+  }
+
+  function drawOneFlag(f) {
+    const fw = 50, fh = 34;
+
+    ctx.save();
+    ctx.translate(f.x, f.y);
+    ctx.rotate(f.rotation);
+    ctx.scale(f.scale, f.scale);
+
+    // Manual shadow (no shadowBlur = fast)
+    ctx.fillStyle = 'rgba(0,0,0,0.12)';
+    ctx.beginPath();
+    ctx.roundRect(-fw / 2 + 2, -fh / 2 + 2, fw, fh, 3);
+    ctx.fill();
+
+    // Flag body
+    ctx.beginPath();
+    ctx.roundRect(-fw / 2, -fh / 2, fw, fh, 3);
+    ctx.fillStyle = f.colored ? '#de2910' : '#d5d0c8';
+    ctx.fill();
+    ctx.strokeStyle = f.colored ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.08)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    // Stars
+    ctx.fillStyle = f.colored ? '#ffde00' : '#bfb9b0';
+    drawStarFromPts(f.starBig);
+    drawStarFromPts(f.star1);
+    drawStarFromPts(f.star2);
+    drawStarFromPts(f.star3);
+    drawStarFromPts(f.star4);
+
+    ctx.restore();
+  }
+
+  function resize() {
+    dpr = window.devicePixelRatio || 1;
+    W = banner.clientWidth;
+    H = banner.clientHeight;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  function createFlags() {
+    flags = [];
+    // Dense packing: more flags, slightly bigger
+    const count = Math.round(W * H / 420);
+    const fw = 50, fh = 34;
+    for (let i = 0; i < count; i++) {
+      const x = Math.random() * (W + 60) - 30;
+      const y = Math.pow(Math.random(), 0.5) * (H - 20);
+      const rotation = (Math.random() - 0.5) * 1.1;
+      const scale = 0.6 + Math.random() * 0.55;
+
+      // Pre-compute star positions (relative to flag center)
+      const f = {
+        x, y, rotation, scale,
+        colored: false,
+        starBig: starPoints(-fw/2+14, -fh/2+12, 6.5, 5),
+        star1: starPoints(-fw/2+25, -fh/2+5, 2.8, 5),
+        star2: starPoints(-fw/2+29, -fh/2+11, 2.8, 5),
+        star3: starPoints(-fw/2+29, -fh/2+17, 2.8, 5),
+        star4: starPoints(-fw/2+25, -fh/2+23, 2.8, 5),
+      };
+      flags.push(f);
+    }
+    // Sort back-to-front
+    flags.sort((a, b) => a.y - b.y);
+    needsFullRedraw = true;
+  }
+
+  function drawRaggedEdge() {
+    ctx.beginPath();
+    ctx.moveTo(-5, H + 5);
+    for (let i = 0; i <= 100; i++) {
+      const x = (i / 100) * (W + 10) - 5;
+      const noise =
+        Math.sin(x * 0.015 + 1.2) * 25 +
+        Math.sin(x * 0.04 + 3.7) * 12 +
+        Math.sin(x * 0.08 + 0.5) * 6;
+      ctx.lineTo(x, H - 65 + noise);
+    }
+    ctx.lineTo(W + 5, H + 5);
+    ctx.closePath();
+    // Use exact same bg color as the page
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim();
+    ctx.fill();
+  }
+
+  function fullRedraw() {
+    ctx.clearRect(0, 0, W, H);
+    for (const f of flags) drawOneFlag(f);
+    drawRaggedEdge();
+    needsFullRedraw = false;
+  }
+
+  // Hit test: point-in-rotated-rectangle
+  function hitTest(mx, my, f) {
+    const fw = 50 * f.scale, fh = 34 * f.scale;
+    const cos = Math.cos(-f.rotation);
+    const sin = Math.sin(-f.rotation);
+    const dx = mx - f.x;
+    const dy = my - f.y;
+    const lx = dx * cos - dy * sin;
+    const ly = dx * sin + dy * cos;
+    return lx >= -fw / 2 && lx <= fw / 2 && ly >= -fh / 2 && ly <= fh / 2;
+  }
+
+  // Find topmost (front-most = last in array) flag under cursor
+  function findFlag(mx, my) {
+    for (let i = flags.length - 1; i >= 0; i--) {
+      if (hitTest(mx, my, flags[i])) return flags[i];
+    }
+    return null;
+  }
+
+  function onPointer(e) {
+    const rect = banner.getBoundingClientRect();
+    const mx = (e.clientX || e.touches[0].clientX) - rect.left;
+    const my = (e.clientY || e.touches[0].clientY) - rect.top;
+
+    const hit = findFlag(mx, my);
+    if (hit && !hit.colored) {
+      hit.colored = true;
+      // Full redraw is simplest and fast enough (no animation loop)
+      fullRedraw();
+    }
+  }
+
+  banner.addEventListener('mousemove', onPointer);
+  banner.addEventListener('touchmove', function(e) { onPointer(e); }, { passive: true });
+
+  function init() {
+    resize();
+    createFlags();
+    fullRedraw();
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+      resize();
+      createFlags();
+      fullRedraw();
+    }, 200);
+  });
+
+  init();
+
+  // Nav show/hide
+  const nav = document.getElementById('topnav');
+  const navObs = new IntersectionObserver(
+    ([entry]) => { nav.classList.toggle('visible', !entry.isIntersecting); },
+    { threshold: 0.1 }
+  );
+  navObs.observe(document.getElementById('flagBanner'));
+
+  // Active section highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-inner a');
+  const secObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.style.color = active ? 'var(--accent)' : '';
+          link.style.fontWeight = active ? '600' : '';
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => secObs.observe(s));
+})();
+</script>
+
+</body>
+</html>
