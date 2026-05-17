@@ -469,6 +469,43 @@ section {
 
 
 
+/* ─── PHOTO GALLERY ─── */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.photo-strip-item {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
+}
+
+.photo-strip-item:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+  z-index: 2;
+}
+
+.photo-strip-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-strip-caption {
+  text-align: center;
+  margin-top: 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+  font-weight: 300;
+}
+
 footer {
   text-align: center; padding: 4rem 2rem;
   border-top: 1px solid var(--border);
@@ -517,6 +554,8 @@ footer a { color: var(--accent); text-decoration: none; }
   .goal-item p { font-size: 0.82rem; }
   .note-box { padding: 1.5rem; }
 
+  .photo-strip { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+
   .topnav { display: none; }
 
   .divider { margin: 0 1.25rem; }
@@ -563,7 +602,7 @@ footer a { color: var(--accent); text-decoration: none; }
 <section id="why">
   <div class="section-label">Why This Trip</div>
   <h2 class="section-title">Understanding both sides of the AI revolution</h2>
-  <p class="section-text">We are a group of Italian AI entrepreneurs who regularly travel to San Francisco to meet with leading AI labs, researchers, and founders. We have built strong relationships with the Silicon Valley ecosystem and now we want to do the same with China &mdash; the other superpower shaping the future of artificial intelligence.</p>
+  <p class="section-text">We are a group of Italian AI entrepreneurs who regularly travel to San Francisco to meet with leading AI labs, researchers, and founders. We have built strong relationships with the Silicon Valley ecosystem and now we want to do the same with China &mdash; the other superpower shaping the future of artificial intelligence. We are genuinely fascinated by what China is building in AI, and we want to see it firsthand: the labs, the products, the people behind the breakthroughs. We plan to bring these stories back to Italy and Europe &mdash; sharing what we learn about Chinese innovation through our communities, talks, and content.</p>
   <div class="mission-grid">
     <div class="mission-card">
       <div class="mission-icon blue">&#x1F310;</div>
@@ -577,10 +616,18 @@ footer a { color: var(--accent); text-decoration: none; }
     </div>
     <div class="mission-card">
       <div class="mission-icon blue">&#x1F1EE;&#x1F1F9;</div>
-      <h3>An Italian Perspective</h3>
-      <p>Italy has a unique position in the global AI landscape &mdash; deep industrial expertise, world-class research talent, and a culture of creativity. We bring this perspective to every conversation.</p>
+      <h3>Storytellers for Europe</h3>
+      <p>We reach thousands of professionals and organizations across Italy and Europe. Everything we learn in China, we bring back &mdash; through our communities, events, content, and the companies we advise.</p>
     </div>
   </div>
+
+  <div class="photo-strip">
+    <div class="photo-strip-item"><img src="photos/sf-coastal.jpeg" alt="Group selfie on California coast"></div>
+    <div class="photo-strip-item"><img src="photos/sf-google.jpeg" alt="Visiting Google campus"></div>
+    <div class="photo-strip-item"><img src="photos/sf-couch.jpeg" alt="Evening together in San Francisco"></div>
+    <div class="photo-strip-item"><img src="photos/sf-rooftop.jpeg" alt="Italian tech community gathering in SF"></div>
+  </div>
+  <p class="photo-strip-caption">Our group during recent trips to San Francisco &mdash; visiting AI labs, meeting founders, and building community.</p>
 </section>
 
 <div class="divider"></div>
@@ -705,7 +752,8 @@ footer a { color: var(--accent); text-decoration: none; }
     <div class="goal-item"><div class="goal-num">1</div><div><h4>Understand China's AI Stack</h4><p>From foundational models (DeepSeek, Zhipu, Moonshot) to product-layer innovation (Shenzhen hardware, consumer AI), we want to map the full ecosystem.</p></div></div>
     <div class="goal-item"><div class="goal-num">2</div><div><h4>Build Genuine Relationships</h4><p>Real conversations over meals with researchers, engineers, and founders who are shaping China's AI future.</p></div></div>
     <div class="goal-item"><div class="goal-num">3</div><div><h4>Compare US and China Approaches</h4><p>As frequent visitors to Silicon Valley, we have deep context on Western AI development. This trip completes the picture with the Chinese perspective.</p></div></div>
-    <div class="goal-item"><div class="goal-num">4</div><div><h4>Explore Collaboration Opportunities</h4><p>We are actively building AI products and training thousands of professionals in Europe. We are looking for ideas, partnerships, and inspiration from the Chinese ecosystem.</p></div></div>
+    <div class="goal-item"><div class="goal-num">4</div><div><h4>Bring China's AI Story to Europe</h4><p>We want to share what we discover with the Italian and European tech communities &mdash; through talks, articles, social media, and conversations with the thousands of professionals and organizations we work with every day.</p></div></div>
+    <div class="goal-item"><div class="goal-num">5</div><div><h4>Explore Collaboration Opportunities</h4><p>We are actively building AI products and training thousands of professionals in Europe. We are looking for ideas, partnerships, and inspiration from the Chinese ecosystem.</p></div></div>
   </div>
   <div class="note-box">
     <h3>Important Note</h3>
