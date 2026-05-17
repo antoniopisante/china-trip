@@ -479,14 +479,49 @@ footer p { color: var(--text-muted); font-size: 0.85rem; font-weight: 300; }
 footer a { color: var(--accent); text-decoration: none; }
 
 @media (max-width: 768px) {
-  .flag-banner { height: 280px; }
-  .hero-meta { gap: 1.5rem; }
-  .itinerary-phase { grid-template-columns: 1fr; gap: 1rem; }
+  .flag-banner { height: 200px; }
+
+  .hero { padding: 2.5rem 1.25rem 4rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 1.1rem; margin-bottom: 1.5rem; }
+  .hero-sub { font-size: 0.92rem; margin-bottom: 2rem; }
+  .hero-tag { font-size: 0.65rem; padding: 0.4rem 1rem; margin-bottom: 1.25rem; }
+  .hero-meta { gap: 1.25rem; }
+  .hero-meta-item .value { font-size: 0.95rem; }
+  .hero-meta-item .label { font-size: 0.62rem; }
+
+  section { padding: 3.5rem 1.25rem; }
+  .section-title { font-size: 1.5rem; }
+  .section-text { font-size: 0.92rem; }
+
+  .travelers-grid { grid-template-columns: 1fr; }
+  .traveler-card { padding: 1.5rem; }
+  .traveler-avatar { width: 64px; height: 64px; }
+  .traveler-card .bio { font-size: 0.82rem; }
+
+  .mission-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+  .mission-card { padding: 1.5rem; }
+
+  .itinerary-phase { grid-template-columns: 1fr; gap: 0.75rem; }
   .timeline-line { display: none; }
   .phase-marker { text-align: left; }
-  .travelers-grid { grid-template-columns: 1fr; }
-  .nav-inner { gap: 0.1rem; }
-  .nav-inner a { font-size: 0.72rem; padding: 0.3rem 0.6rem; }
+  .phase-content { padding: 1.5rem; }
+  .phase-content li { font-size: 0.85rem; }
+
+  .facilitators-grid { grid-template-columns: 1fr; }
+  .facilitator-card { padding: 1.5rem; }
+
+  .goals-list { gap: 1rem; }
+  .goal-item { padding: 1.25rem; flex-direction: column; gap: 0.75rem; }
+  .goal-item h4 { font-size: 0.9rem; }
+  .goal-item p { font-size: 0.82rem; }
+  .note-box { padding: 1.5rem; }
+
+  .topnav { display: none; }
+
+  .divider { margin: 0 1.25rem; }
+
+  footer { padding: 3rem 1.25rem; }
 }
 </style>
 </head>
