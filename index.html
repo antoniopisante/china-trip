@@ -956,10 +956,19 @@ footer a { color: var(--accent); text-decoration: none; }
     fullRedraw();
   }
 
+  let lastW = W;
   let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
+      const newW = banner.clientWidth;
+      if (newW === lastW) {
+        // Only height changed (mobile address bar) — just resize canvas and redraw
+        resize();
+        fullRedraw();
+        return;
+      }
+      lastW = newW;
       resize();
       createFlags();
       fullRedraw();
