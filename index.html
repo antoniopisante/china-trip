@@ -956,7 +956,8 @@ footer a { color: var(--accent); text-decoration: none; }
     fullRedraw();
   }
 
-  let lastW = W;
+  init();
+  let lastW = banner.clientWidth;
   let resizeTimer;
   window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
@@ -974,8 +975,6 @@ footer a { color: var(--accent); text-decoration: none; }
       fullRedraw();
     }, 200);
   });
-
-  init();
 
   // Nav show/hide
   const nav = document.getElementById('topnav');
