@@ -247,21 +247,32 @@ section {
 /* ─── TRAVELERS ─── */
 .travelers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  margin-top: 3rem;
+  max-width: 880px;
+  margin: 3rem auto 0;
 }
 
 .traveler-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 2rem;
+  padding: 2rem 2.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2.25rem;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
   overflow: hidden;
   cursor: default;
 }
+
+/* Editorial zigzag: alternate avatar side */
+.traveler-card:nth-child(even) { flex-direction: row-reverse; }
+.traveler-card:nth-child(even) .traveler-info { text-align: left; }
+
+.traveler-info { flex: 1; min-width: 0; }
+.traveler-info .bio { max-width: 64ch; }
 
 .traveler-card::before {
   content: '';
@@ -280,32 +291,12 @@ section {
 
 .traveler-card:hover::before { left: 120%; }
 
-/* Lead card — full-width horizontal layout for the trip organizer */
-.traveler-card.lead {
-  grid-column: 1 / -1;
-  display: flex;
-  align-items: flex-start;
-  gap: 2.25rem;
-  padding: 2.5rem;
-  background: linear-gradient(135deg, var(--accent-soft), var(--surface) 45%);
-}
-
-.traveler-card.lead .traveler-avatar {
-  width: 116px; height: 116px;
-  margin-bottom: 0;
-  flex-shrink: 0;
-}
-
-.traveler-card.lead .traveler-info { flex: 1; }
-.traveler-card.lead h3 { font-size: 1.25rem; }
-.traveler-card.lead .bio { max-width: 720px; }
-
 .traveler-avatar {
-  width: 80px; height: 80px; border-radius: 50%;
+  width: 96px; height: 96px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), #6366f1);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; font-weight: 700; margin-bottom: 1.25rem;
-  color: #fff; overflow: hidden;
+  font-size: 1.5rem; font-weight: 700; margin-top: 0.25rem;
+  color: #fff; overflow: hidden; flex-shrink: 0;
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
 }
 
@@ -551,13 +542,10 @@ footer a { color: var(--accent); text-decoration: none; }
   .section-title { font-size: 1.5rem; }
   .section-text { font-size: 0.92rem; }
 
-  .travelers-grid { grid-template-columns: 1fr; }
-  .traveler-card { padding: 1.5rem; }
-  .traveler-avatar { width: 64px; height: 64px; }
+  .traveler-card,
+  .traveler-card:nth-child(even) { flex-direction: column; gap: 1.25rem; padding: 1.5rem; }
+  .traveler-avatar { width: 72px; height: 72px; margin-top: 0; }
   .traveler-card .bio { font-size: 0.82rem; }
-  .traveler-card.lead { flex-direction: column; gap: 1.25rem; padding: 1.5rem; }
-  .traveler-card.lead .traveler-avatar { width: 72px; height: 72px; }
-  .traveler-card.lead h3 { font-size: 1.05rem; }
 
   .mission-grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .mission-card { padding: 1.5rem; }
@@ -660,7 +648,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <h2 class="section-title">Who is traveling</h2>
   <p class="section-text">Seven people traveling together, each bringing a different lens to the Chinese AI ecosystem.</p>
   <div class="travelers-grid">
-    <div class="traveler-card lead">
+    <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/antonio-pisante.jpeg" alt="Antonio Pisante">
       </div>
@@ -679,79 +667,91 @@ footer a { color: var(--accent); text-decoration: none; }
       <div class="traveler-avatar">
         <img src="photos/alessandro-busso.jpeg" alt="Alessandro Busso">
       </div>
-      <h3>Alessandro Busso</h3>
-      <div class="role">Co-Founder &amp; COO, Wibo</div>
-      <p class="bio">Co-founded Wibo at age 21. Today, Wibo is a fast-growing edtech scaleup that partners with 150+ corporates and multinationals &mdash; including Unicredit, Huawei, Cr&eacute;dit Agricole, and Amazon &mdash; to design how people and AI work together. 14,500+ professionals trained across Italy and abroad. Previously co-founded Officina Magazine at 15, a cultural journalism platform with 60 writers.</p>
-      <div class="traveler-links">
-        <a href="https://www.wibo.app/en" target="_blank">wibo.app</a>
-        <a href="https://www.linkedin.com/in/alessandro-busso" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Alessandro Busso</h3>
+        <div class="role">Co-Founder &amp; COO, Wibo</div>
+        <p class="bio">Co-founded Wibo at age 21. Today, Wibo is a fast-growing edtech scaleup that partners with 150+ corporates and multinationals &mdash; including Unicredit, Huawei, Cr&eacute;dit Agricole, and Amazon &mdash; to design how people and AI work together. 14,500+ professionals trained across Italy and abroad. Previously co-founded Officina Magazine at 15, a cultural journalism platform with 60 writers.</p>
+        <div class="traveler-links">
+          <a href="https://www.wibo.app/en" target="_blank">wibo.app</a>
+          <a href="https://www.linkedin.com/in/alessandro-busso" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">AI &amp; Education</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">AI &amp; Education</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/guglielmo-panzera.png" alt="Guglielmo Panzera">
       </div>
-      <h3>Guglielmo Panzera</h3>
-      <div class="role">Founder, eVentures &middot; Co-Founder, Il Pagante</div>
-      <p class="bio">Serial entrepreneur operating at the intersection of technology and entertainment. Founded eVentures and co-created Il Pagante, which grew from a viral social media project into a full-fledged entertainment brand with millions of streams and sold-out live events across Italy. Brings a unique perspective on how AI and technology are reshaping creative industries, content production, and the music business.</p>
-      <div class="traveler-links">
-        <a href="https://eventures.it/" target="_blank">eventures.it</a>
-        <a href="https://www.linkedin.com/in/guglielmo-panzera-372432a6" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Guglielmo Panzera</h3>
+        <div class="role">Founder, eVentures &middot; Co-Founder, Il Pagante</div>
+        <p class="bio">Serial entrepreneur operating at the intersection of technology and entertainment. Founded eVentures and co-created Il Pagante, which grew from a viral social media project into a full-fledged entertainment brand with millions of streams and sold-out live events across Italy. Brings a unique perspective on how AI and technology are reshaping creative industries, content production, and the music business.</p>
+        <div class="traveler-links">
+          <a href="https://eventures.it/" target="_blank">eventures.it</a>
+          <a href="https://www.linkedin.com/in/guglielmo-panzera-372432a6" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">Music &amp; Entertainment Tech</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">Music &amp; Entertainment Tech</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/francesca-vidali.jpeg" alt="Francesca Vidali">
       </div>
-      <h3>Francesca Vidali</h3>
-      <div class="role">CEO &amp; Co-Founder, UGO &middot; Founder, Carvoil&agrave;</div>
-      <p class="bio">Management engineer (Politecnico di Milano) and serial entrepreneur. Co-founded UGO, a digital platform that connects families with trained personal assistants to accompany elderly and fragile people to appointments and therapies. Since 2023 she leads Carvoil&agrave;, the first Italian company specialized in premium Pick-up &amp; Delivery for the automotive sector &mdash; a nationwide network of drivers serving long-term rental companies, carmakers, insurers, dealerships, and body shops across 90+ cities. Builds technology-driven services that make complex operations fast, transparent, and reliable. Based in Milan.</p>
-      <div class="traveler-links">
-        <a href="https://carvoila.com" target="_blank">carvoila.com</a>
-        <a href="https://www.linkedin.com/in/francesca-vidali-352521a6" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Francesca Vidali</h3>
+        <div class="role">CEO &amp; Co-Founder, UGO &middot; Founder, Carvoil&agrave;</div>
+        <p class="bio">Management engineer (Politecnico di Milano) and serial entrepreneur. Co-founded UGO, a digital platform that connects families with trained personal assistants to accompany elderly and fragile people to appointments and therapies. Since 2023 she leads Carvoil&agrave;, the first Italian company specialized in premium Pick-up &amp; Delivery for the automotive sector &mdash; a nationwide network of drivers serving long-term rental companies, carmakers, insurers, dealerships, and body shops across 90+ cities. Builds technology-driven services that make complex operations fast, transparent, and reliable. Based in Milan.</p>
+        <div class="traveler-links">
+          <a href="https://carvoila.com" target="_blank">carvoila.com</a>
+          <a href="https://www.linkedin.com/in/francesca-vidali-352521a6" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">Mobility &amp; Logistics Tech</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">Mobility &amp; Logistics Tech</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/federico-perazzi.jpeg" alt="Federico Perazzi">
       </div>
-      <h3>Federico Perazzi</h3>
-      <div class="role">AI Researcher &amp; Former Head of AI, Bending Spoons</div>
-      <p class="bio">Computer vision researcher with a PhD from ETH Zurich and over 30 publications at top-tier conferences (CVPR, ICCV, SIGGRAPH), accumulating 13,000+ citations. Spent a decade in research across Disney Research, Adobe, and Meta Reality Labs, working on visual effects, Photoshop, and the Ray-Ban smart glasses. Returned to Italy in 2021 to build and lead the AI team at Bending Spoons. Now exploring a new venture of his own. Based in Milan.</p>
-      <div class="traveler-links">
-        <a href="https://fperazzi.github.io" target="_blank">Website</a>
-        <a href="https://www.linkedin.com/in/fperazzi" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Federico Perazzi</h3>
+        <div class="role">AI Researcher &amp; Former Head of AI, Bending Spoons</div>
+        <p class="bio">Computer vision researcher with a PhD from ETH Zurich and over 30 publications at top-tier conferences (CVPR, ICCV, SIGGRAPH), accumulating 13,000+ citations. Spent a decade in research across Disney Research, Adobe, and Meta Reality Labs, working on visual effects, Photoshop, and the Ray-Ban smart glasses. Returned to Italy in 2021 to build and lead the AI team at Bending Spoons. Now exploring a new venture of his own. Based in Milan.</p>
+        <div class="traveler-links">
+          <a href="https://fperazzi.github.io" target="_blank">Website</a>
+          <a href="https://www.linkedin.com/in/fperazzi" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">AI Research &amp; Product</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">AI Research &amp; Product</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/francesco-nox.jpeg" alt="Francesco Salvatore Nox">
       </div>
-      <h3>Francesco Salvatore Nox</h3>
-      <div class="role">Innovation Strategy Advisor &middot; Founder Enabler</div>
-      <p class="bio">Innovation strategist with 13+ years turning ideas into ventures. Former Partner and Head of Innovation at Tree, an open-innovation boutique he helped grow to 30 people before its acquisition by the Spanish group Opinno. Has supported 100+ early-stage startups and 200+ aspiring founders, and designs and runs entrepreneurship and intrapreneurship programs with institutions such as B4i (Bocconi), ESCP, Unicredit, and Italian Chambers of Commerce. Organizer and facilitator of Techstars Startup Weekend since 2016. Lives between Milan and Barcelona.</p>
-      <div class="traveler-links">
-        <a href="https://francesconox.com" target="_blank">francesconox.com</a>
-        <a href="https://www.linkedin.com/in/francesconox" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Francesco Salvatore Nox</h3>
+        <div class="role">Innovation Strategy Advisor &middot; Founder Enabler</div>
+        <p class="bio">Innovation strategist with 13+ years turning ideas into ventures. Former Partner and Head of Innovation at Tree, an open-innovation boutique he helped grow to 30 people before its acquisition by the Spanish group Opinno. Has supported 100+ early-stage startups and 200+ aspiring founders, and designs and runs entrepreneurship and intrapreneurship programs with institutions such as B4i (Bocconi), ESCP, Unicredit, and Italian Chambers of Commerce. Organizer and facilitator of Techstars Startup Weekend since 2016. Lives between Milan and Barcelona.</p>
+        <div class="traveler-links">
+          <a href="https://francesconox.com" target="_blank">francesconox.com</a>
+          <a href="https://www.linkedin.com/in/francesconox" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">Innovation &amp; Entrepreneurship</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">Innovation &amp; Entrepreneurship</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
         <img src="photos/jacopo-mele.jpeg" alt="Jacopo Mele">
       </div>
-      <h3>Jacopo Mele</h3>
-      <div class="role">General Partner, Moonstone VC</div>
-      <p class="bio">General Partner of Moonstone, a Milan-based early-stage venture capital fund backing pre-seed and seed founders worldwide who tackle unsolved problems for people and the planet &mdash; across AI, deeptech, healthcare, and climate. Named by Forbes among the 30 most influential under-30s in Europe in 2016. Co-founder and president of Fondazione Homo Ex Machina, a techno-philanthropic foundation, and co-founder of Aurora Fellows, a mentorship program for Italy's most talented young builders. Has spent over a decade helping leaders seize the opportunities of the digital economy.</p>
-      <div class="traveler-links">
-        <a href="https://www.moonstone.fund" target="_blank">moonstone.fund</a>
-        <a href="https://www.linkedin.com/in/guedado" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Jacopo Mele</h3>
+        <div class="role">General Partner, Moonstone VC</div>
+        <p class="bio">General Partner of Moonstone, a Milan-based early-stage venture capital fund backing pre-seed and seed founders worldwide who tackle unsolved problems for people and the planet &mdash; across AI, deeptech, healthcare, and climate. Named by Forbes among the 30 most influential under-30s in Europe in 2016. Co-founder and president of Fondazione Homo Ex Machina, a techno-philanthropic foundation, and co-founder of Aurora Fellows, a mentorship program for Italy's most talented young builders. Has spent over a decade helping leaders seize the opportunities of the digital economy.</p>
+        <div class="traveler-links">
+          <a href="https://www.moonstone.fund" target="_blank">moonstone.fund</a>
+          <a href="https://www.linkedin.com/in/guedado" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">Venture Capital</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">Venture Capital</span>
     </div>
   </div>
 </section>
