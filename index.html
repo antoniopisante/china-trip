@@ -280,6 +280,26 @@ section {
 
 .traveler-card:hover::before { left: 120%; }
 
+/* Lead card — full-width horizontal layout for the trip organizer */
+.traveler-card.lead {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 2.25rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface) 45%);
+}
+
+.traveler-card.lead .traveler-avatar {
+  width: 116px; height: 116px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.traveler-card.lead .traveler-info { flex: 1; }
+.traveler-card.lead h3 { font-size: 1.25rem; }
+.traveler-card.lead .bio { max-width: 720px; }
+
 .traveler-avatar {
   width: 80px; height: 80px; border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), #6366f1);
@@ -535,6 +555,9 @@ footer a { color: var(--accent); text-decoration: none; }
   .traveler-card { padding: 1.5rem; }
   .traveler-avatar { width: 64px; height: 64px; }
   .traveler-card .bio { font-size: 0.82rem; }
+  .traveler-card.lead { flex-direction: column; gap: 1.25rem; padding: 1.5rem; }
+  .traveler-card.lead .traveler-avatar { width: 72px; height: 72px; }
+  .traveler-card.lead h3 { font-size: 1.05rem; }
 
   .mission-grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .mission-card { padding: 1.5rem; }
@@ -584,15 +607,15 @@ footer a { color: var(--accent); text-decoration: none; }
 <!-- ═══════ HERO ═══════ -->
 <div class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-tag">Summer 2026 &middot; Beijing &amp; Shenzhen</div>
+    <div class="hero-tag">Summer 2026 &middot; Shanghai &amp; Shenzhen</div>
     <h1>Italy Meets China</h1>
     <div class="hero-subtitle">An AI Leadership Journey</div>
     <p class="hero-sub">A group of Italian AI entrepreneurs, researchers, and digital creators traveling to China to build lasting bridges between Europe's and Asia's most dynamic AI ecosystems.</p>
     <div class="hero-meta">
       <div class="hero-meta-item"><div class="label">Duration</div><div class="value">10 Days</div></div>
-      <div class="hero-meta-item"><div class="label">Cities</div><div class="value">Beijing &amp; Shenzhen</div></div>
+      <div class="hero-meta-item"><div class="label">Cities</div><div class="value">Shanghai &amp; Shenzhen</div></div>
       <div class="hero-meta-item"><div class="label">Focus</div><div class="value">AI &amp; Deep Tech</div></div>
-      <div class="hero-meta-item"><div class="label">Group Size</div><div class="value">5 People</div></div>
+      <div class="hero-meta-item"><div class="label">Group Size</div><div class="value">7 People</div></div>
     </div>
   </div>
 </div>
@@ -635,20 +658,22 @@ footer a { color: var(--accent); text-decoration: none; }
 <section id="group">
   <div class="section-label">The Group</div>
   <h2 class="section-title">Who is traveling</h2>
-  <p class="section-text">Six people traveling together, each bringing a different lens to the Chinese AI ecosystem.</p>
+  <p class="section-text">Seven people traveling together, each bringing a different lens to the Chinese AI ecosystem.</p>
   <div class="travelers-grid">
-    <div class="traveler-card">
+    <div class="traveler-card lead">
       <div class="traveler-avatar">
         <img src="photos/antonio-pisante.jpeg" alt="Antonio Pisante">
       </div>
-      <h3>Antonio Pisante</h3>
-      <div class="role">Founder, Yellow Tech &middot; President, AIFIA</div>
-      <p class="bio">Founder and CEO of Yellow Tech, an AI consultancy that has guided 450+ Italian organizations through AI transformation, trained over 25,000 professionals, and deployed AI agents in production for enterprise clients. President of AIFIA (Associazione Italiana Formatori di Intelligenza Artificiale), a network of 190+ certified AI trainers &mdash; the largest in Italy. Visits San Francisco quarterly to meet with leading AI labs.</p>
-      <div class="traveler-links">
-        <a href="https://www.yellowtech.it" target="_blank">yellowtech.it</a>
-        <a href="https://www.linkedin.com/in/apisante" target="_blank">LinkedIn</a>
+      <div class="traveler-info">
+        <h3>Antonio Pisante</h3>
+        <div class="role">Founder, Yellow Tech &middot; President, AIFIA</div>
+        <p class="bio">Founder and CEO of Yellow Tech, an AI consultancy that has guided 450+ Italian organizations through AI transformation, trained over 25,000 professionals, and deployed AI agents in production for enterprise clients. President of AIFIA (Associazione Italiana Formatori di Intelligenza Artificiale), a network of 190+ certified AI trainers &mdash; the largest in Italy. Visits San Francisco quarterly to meet with leading AI labs.</p>
+        <div class="traveler-links">
+          <a href="https://www.yellowtech.it" target="_blank">yellowtech.it</a>
+          <a href="https://www.linkedin.com/in/apisante" target="_blank">LinkedIn</a>
+        </div>
+        <span class="traveler-tag tag-entrepreneur">AI Agents &amp; Adoption</span>
       </div>
-      <span class="traveler-tag tag-entrepreneur">AI Agents &amp; Adoption</span>
     </div>
     <div class="traveler-card">
       <div class="traveler-avatar">
@@ -715,6 +740,19 @@ footer a { color: var(--accent); text-decoration: none; }
       </div>
       <span class="traveler-tag tag-entrepreneur">Innovation &amp; Entrepreneurship</span>
     </div>
+    <div class="traveler-card">
+      <div class="traveler-avatar">
+        <img src="photos/jacopo-mele.jpeg" alt="Jacopo Mele">
+      </div>
+      <h3>Jacopo Mele</h3>
+      <div class="role">General Partner, Moonstone VC</div>
+      <p class="bio">General Partner of Moonstone, a Milan-based early-stage venture capital fund backing pre-seed and seed founders worldwide who tackle unsolved problems for people and the planet &mdash; across AI, deeptech, healthcare, and climate. Named by Forbes among the 30 most influential under-30s in Europe in 2016. Co-founder and president of Fondazione Homo Ex Machina, a techno-philanthropic foundation, and co-founder of Aurora Fellows, a mentorship program for Italy's most talented young builders. Has spent over a decade helping leaders seize the opportunities of the digital economy.</p>
+      <div class="traveler-links">
+        <a href="https://www.moonstone.fund" target="_blank">moonstone.fund</a>
+        <a href="https://www.linkedin.com/in/guedado" target="_blank">LinkedIn</a>
+      </div>
+      <span class="traveler-tag tag-entrepreneur">Venture Capital</span>
+    </div>
   </div>
 </section>
 
@@ -724,20 +762,20 @@ footer a { color: var(--accent); text-decoration: none; }
 <section id="journey">
   <div class="section-label">The Journey</div>
   <h2 class="section-title">10 days, two cities, one mission</h2>
-  <p class="section-text">A focused itinerary designed to maximize depth over breadth. Five days in Beijing to meet the research frontier, five days in Shenzhen to see the product innovation layer.</p>
+  <p class="section-text">A focused itinerary designed to maximize depth over breadth. Five days in Shanghai to meet the research and model frontier, five days in Shenzhen to see the product innovation layer.</p>
   <div class="itinerary">
     <div class="itinerary-phase">
-      <div class="phase-marker"><div class="city">Beijing</div><div class="days">Days 1&ndash;5</div></div>
+      <div class="phase-marker"><div class="city">Shanghai</div><div class="days">Days 1&ndash;5</div></div>
       <div class="timeline-line"><div class="timeline-dot"></div></div>
       <div class="phase-content">
-        <h3>The Research Frontier &mdash; China's AI Brain</h3>
+        <h3>The Model Frontier &mdash; China's AI Powerhouse</h3>
         <ul>
-          <li>Visits to leading AI labs: Moonshot/KIMI, Zhipu AI, Baidu, 01.AI, and more</li>
-          <li>Meetings with researchers at Tsinghua University and PKU</li>
-          <li>Private dinners with lab researchers and industry leaders in Haidian district</li>
-          <li>Informal gathering in Beijing's hutong district &mdash; pancakes, cocktails, and conversation</li>
-          <li>Day trip to the Great Wall &mdash; a private wild section with a local historian</li>
-          <li>Meetings with StepFun (Beijing office) and Minimax representatives</li>
+          <li>Visits to leading AI labs: MiniMax, StepFun, Shanghai AI Laboratory, and more</li>
+          <li>Meetings with researchers at Fudan University and Shanghai Jiao Tong University</li>
+          <li>Private dinners with lab researchers and industry leaders in the West Bund AI district (Xuhui)</li>
+          <li>Informal gathering in the former French Concession &mdash; street food, cocktails, and conversation</li>
+          <li>Walk through the Bund and old Shanghai with a local historian</li>
+          <li>Visits to Zhangjiang Science City &mdash; Shanghai's deep tech and semiconductor hub</li>
         </ul>
       </div>
     </div>
@@ -766,7 +804,7 @@ footer a { color: var(--accent); text-decoration: none; }
   <div class="section-label">Our Goals</div>
   <h2 class="section-title">What we want to learn</h2>
   <div class="goals-list">
-    <div class="goal-item"><div class="goal-num">1</div><div><h4>Understand China's AI Stack</h4><p>From foundational models (DeepSeek, Zhipu, Moonshot) to product-layer innovation (Shenzhen hardware, consumer AI), we want to map the full ecosystem.</p></div></div>
+    <div class="goal-item"><div class="goal-num">1</div><div><h4>Understand China's AI Stack</h4><p>From foundational models (DeepSeek, MiniMax, StepFun) to product-layer innovation (Shenzhen hardware, consumer AI), we want to map the full ecosystem.</p></div></div>
     <div class="goal-item"><div class="goal-num">2</div><div><h4>Build Genuine Relationships</h4><p>Real conversations over meals with researchers, engineers, and founders who are shaping China's AI future.</p></div></div>
     <div class="goal-item"><div class="goal-num">3</div><div><h4>Compare US and China Approaches</h4><p>As frequent visitors to Silicon Valley, we have deep context on Western AI development. This trip completes the picture with the Chinese perspective.</p></div></div>
     <div class="goal-item"><div class="goal-num">4</div><div><h4>Bring China's AI Story to Europe</h4><p>We want to share what we discover with the Italian and European tech communities &mdash; through talks, articles, social media, and conversations with the thousands of professionals and organizations we work with every day.</p></div></div>
@@ -781,7 +819,7 @@ footer a { color: var(--accent); text-decoration: none; }
 
 <footer>
   <p style="font-size: 1.1rem; color: var(--text); font-weight: 500; margin-bottom: 0.5rem;">Italy Meets China: An AI Leadership Journey</p>
-  <p>Summer 2026 &middot; Beijing &amp; Shenzhen</p>
+  <p>Summer 2026 &middot; Shanghai &amp; Shenzhen</p>
   <p style="margin-top: 1rem;">For inquiries: <a href="mailto:antonio.pisante@yellowtech.it">antonio.pisante@yellowtech.it</a></p>
 </footer>
 
